@@ -5,16 +5,13 @@ class Calculator:
     def __init__(self, root):
         self.root = root
         self.root.title("Калькулятор")
-
         self.result_var = tk.StringVar()
         self.result_var.set("0")
-
         self.create_widgets()
 
     def create_widgets(self):
         result_entry = tk.Entry(self.root, textvariable=self.result_var, font=("Arial", 20), bd=10, relief="sunken", justify="right")
         result_entry.grid(row=0, column=0, columnspan=4)
-
         buttons = [
             ('%', 1, 0), ('√', 1, 1), ('x²', 1, 2), ('1/x', 1, 3),
             ('CE', 2, 0), ('C', 2, 1), ('←', 2, 2), ('÷', 2, 3),
@@ -31,7 +28,6 @@ class Calculator:
 
     def on_button_click(self, button):
         current_text = self.result_var.get()
-
         if button == "C" or button == "CE":
             self.result_var.set("0")
         elif button == "←" and current_text != "Ошибка":
@@ -64,9 +60,6 @@ class Calculator:
 
     def calculate_result(self, expression):
         expression = expression.replace(',', '.').replace('×', '*').replace('÷', '/').replace("²", "**2").replace("√", "math.sqrt")
-        #print(expression)
-        #print(eval(expression))
-        #print(6.6+3.3)
         answer = eval(expression)
         if answer != "Ошибка":
             if int(answer) == answer:
